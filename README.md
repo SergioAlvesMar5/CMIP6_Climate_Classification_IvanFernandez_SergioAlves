@@ -114,7 +114,10 @@ python analizar_y_mapear_habitats_pandaversion.py
   * `../data_kmeans/k_optimo.txt`: Archivo de texto con el `k` óptimo detectado.
   * `../data_kmeans/mapa_clasificacion_k[N].nc`: Dataset NetCDF con la clasificación.
   * `../figures/mapa_clasificacion_k[N].png`: Mapa global de las zonas climáticas.
-  * `../figures/mapa_clusters_habitats.png`: Mapa final con los hábitats identificados.
+  * `../figures/mapa_clusters_osos_pandaversion_k[N].png`: Mapa final con los hábitats identificados.
+  * `../figures/scatter_clasificacion_k[N].png`: Gráfico de dispersion de los n-clusters.
+
+ 
 
 -----
 
