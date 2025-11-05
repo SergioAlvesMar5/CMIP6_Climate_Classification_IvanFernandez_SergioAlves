@@ -1,4 +1,4 @@
-# CMIP6_Climate_Classification_IvanFernandez_SergioAlves
+# CMIP6\_Climate\_Classification\_IvanFernandez\_SergioAlves
 
 Este repositorio (`ProyectoOsos`) contiene un conjunto de scripts de Python diseñados para procesar datos de modelos climáticos (como CMIP6) y clasificarlos en zonas climáticas o hábitats distintos mediante técnicas de Machine Learning no supervisado (PCA y K-Means).
 
@@ -15,30 +15,46 @@ El pipeline completo realiza las siguientes operaciones:
 
 -----
 
-## 📂 Estructura de Carpetas Requerida
+## 📂 Estructura de Carpetas y Descarga de Datos
 
 Para que los scripts funcionen correctamente, se espera la siguiente estructura de directorios (los scripts se encuentran en `ProyectoOsos/scripts/`):
 
 ```
 ProyectoOsos/
 ├── data/
-│   ├── pr/       (Archivos .nc de precipitación)
-│   ├── tasmax/   (Archivos .nc de temp. máxima)
-│   ├── tasmin/   (Archivos .nc de temp. mínima)
+│   ├── instalacion_data.txt  (CONTIENE ENLACE GOOGLE DRIVE)
+│   ├── pr/
+│   ├── tasmax/
+│   └── tasmin/
 ├── data_auxiliar/
-│   └── landsea.nc  (Máscara de tierra/océano)
+│   └── landsea.nc
 ├── data_climatologia/
 ├── data_ensemble/
 ├── data_kmeans/
 ├── data_pca/
 ├── data_remallada/
+│   └── instalacion_data_remallada.txt (CONTIENE ENLACE)
 ├── data_unida/
+│   └── instalacion_data_unida.txt (CONTIENE ENLACE)
 ├── figures/
-└── scripts/      (Aquí van todos los scripts .py)
-    ├── analizar_y_mapear_habitats_pandaversion.py
-    ├── aplicar_pca.py
-    ├── ... (etc.)
+└── scripts/
+    ├── ... (todos los scripts .py)
 ```
+
+### ❗ Nota Importante sobre los Datos (Google Drive)
+
+Debido al gran tamaño de los archivos NetCDF (`.nc`) iniciales, el **contenido** de las carpetas `data`, `data_remallada` y `data_unida` no está alojado en GitHub.
+
+En su lugar, dentro de cada una de estas tres carpetas en el repositorio, encontrarás un archivo `.txt` (ej. `instalacion_data.txt`) que contiene un enlace de Google Drive.
+
+**Instrucciones de descarga:**
+
+1.  Navega a la carpeta correspondiente en este repositorio (ej. `ProyectoOsos/data/`).
+2.  Abre el archivo `.txt` que se encuentra dentro.
+3.  Copia el enlace de Google Drive y úsalo para descargar el archivo comprimido.
+4.  Descomprime el contenido descargado dentro de esa misma carpeta para que el pipeline pueda encontrar los archivos (`.nc`).
+
+Las carpetas de datos generados *después* del preprocesamiento (`data_climatologia`, `data_ensemble`, etc.) son mucho más pequeñas y sí están incluidas directamente en el repositorio.
 
 -----
 
@@ -62,6 +78,14 @@ matplotlib
 cartopy
 joblib
 ```
+
+-----
+
+## 🚀 Recomendación de Ejecución
+
+Aunque en el repositorio incluimos las carpetas de datos intermedios (`data_climatologia`, `data_ensemble`, etc.) resultantes de nuestra propia ejecución, **recomendamos ejecutar todo el pipeline desde el principio**.
+
+Para ello, una vez descargados los datos iniciales (`data`, `data_remallada`, `data_unida` y `data_auxiliar`) siguiendo las instrucciones de la nota anterior, solo tienes que seguir el "Flujo de Ejecución" descrito a continuación para regenerar todos los resultados.
 
 -----
 
@@ -114,10 +138,7 @@ python analizar_y_mapear_habitats_pandaversion.py
   * `../data_kmeans/k_optimo.txt`: Archivo de texto con el `k` óptimo detectado.
   * `../data_kmeans/mapa_clasificacion_k[N].nc`: Dataset NetCDF con la clasificación.
   * `../figures/mapa_clasificacion_k[N].png`: Mapa global de las zonas climáticas.
-  * `../figures/mapa_clusters_osos_pandaversion_k[N].png`: Mapa final con los hábitats identificados.
-  * `../figures/scatter_clasificacion_k[N].png`: Gráfico de dispersion de los n-clusters.
-
- 
+  * `../figures/mapa_clusters_habitats.png`: Mapa final con los hábitats identificados.
 
 -----
 
